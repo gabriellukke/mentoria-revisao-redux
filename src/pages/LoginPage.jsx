@@ -18,7 +18,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { email } = this.state;
+    const { username } = this.state;
     const { getUsername } = this.props;
     return (
       <form>
@@ -28,13 +28,13 @@ class Login extends React.Component {
             type="text"
             name="username"
             id="username"
-            value={email}
+            value={username}
             onChange={(e) => this.handleChange(e.target)}
           />
         </label>
         <button
           type="button"
-          onClick={() => getUsername(this.state)}
+          onClick={() => getUsername(username)}
         >
           <Link to="/products" />
           Entrar

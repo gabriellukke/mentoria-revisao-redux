@@ -13,6 +13,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
+    this.getUsername = this.getUsername.bind(this);
 
     this.state = {
       products: [],
@@ -31,6 +32,7 @@ export default class App extends Component {
   }
 
   getUsername(username) {
+    console.log(username);
     this.setState({ username });
   }
 
