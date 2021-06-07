@@ -32,13 +32,13 @@ class Login extends React.Component {
             onChange={(e) => this.handleChange(e.target)}
           />
         </label>
-        <button
-          type="button"
+        <Link
+          to="/products"
           onClick={() => getUsername(username)}
         >
-          <Link to="/products" />
+
           Entrar
-        </button>
+        </Link>
       </form>
     );
   }
