@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import '../css/LoginPage.css';
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -19,24 +21,31 @@ class Login extends React.Component {
 
   render() {
     const { username } = this.state;
-    const { getUsername } = this.props;
+    const { setUsername } = this.props;
     return (
-      <form>
-        <label htmlFor="username">
-          Username
+      <form className="login-form">
+        <label htmlFor="username" className="login-label">
+          Insira um nome de usuário:
           <input
             type="text"
             name="username"
             id="username"
             value={username}
+            placeholder="Username"
+            maxLength="30"
             onChange={(e) => this.handleChange(e.target)}
           />
         </label>
         <Link
           to="/products"
-          onClick={() => getUsername(username)}
+          onClick={(e) => {
+            if (!username) {
+              e.preventDefault();
+            }
+            setUsername(username);
+          }}
+          className="login-btn"
         >
-
           Entrar
         </Link>
       </form>

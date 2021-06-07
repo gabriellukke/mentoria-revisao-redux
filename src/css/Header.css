@@ -3,7 +3,7 @@ header {
   display: flex;
   align-items: center;
   width: 100%;
-  height: 60px;
+  min-height: 60px;
   box-shadow: 0 2px 0 0 rgb(0 0 0 / 10%);
 }
 
@@ -68,5 +68,29 @@ header > button:active {
 
 .disabled {
   pointer-events: none;
-  opacity: .5;
+  opacity: .3;
+}
+
+.user-info {
+  flex: 1;
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(70, 70, 70);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 15px;
+}
+
+.user-info > a {
+  color: rgb(70, 70, 70);
+}
+
+.user-info > img {
+  margin-right: 10px;
+  height: 25px;
+  padding: 3px;
+  background-color: white;
+  border-radius: 50%;
 }

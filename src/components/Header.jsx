@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import mercadoTrybe from '../images/mercadoTrybe.png';
 import trybeLogo from '../images/trybeLogo.png';
 import searchIcon from '../images/searchIcon.png';
+import userIcon from '../images/userIcon.png';
+
 import '../css/Header.css';
 
 class Header extends Component {
@@ -38,6 +42,10 @@ class Header extends Component {
         <button type="button" onClick={() => onClick(searchText)} className={username ? '' : 'disabled'}>
           <img src={searchIcon} alt="search icon" />
         </button>
+        <div className="user-info">
+          <img src={userIcon} alt="user icon" />
+          {username || <Link to="/">Log in</Link>}
+        </div>
       </header>
     );
   }
