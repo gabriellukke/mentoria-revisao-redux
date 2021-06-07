@@ -5,6 +5,7 @@ import mercadoTrybe from '../images/mercadoTrybe.png';
 import trybeLogo from '../images/trybeLogo.png';
 import searchIcon from '../images/searchIcon.png';
 import userIcon from '../images/userIcon.png';
+import cartIcon from '../images/cartIcon.png';
 
 import '../css/Header.css';
 
@@ -43,8 +44,21 @@ class Header extends Component {
           <img src={searchIcon} alt="search icon" />
         </button>
         <div className="user-info">
-          <img src={userIcon} alt="user icon" />
-          {username || <Link to="/">Log in</Link>}
+          {
+          username
+            ? (
+              <>
+                <Link to="cart"><img src={cartIcon} alt="user icon" /></Link>
+                {username}
+              </>
+            )
+            : (
+              <>
+                <img src={userIcon} alt="user icon" />
+                <Link to="/">Log in</Link>
+              </>
+            )
+        }
         </div>
       </header>
     );

@@ -87,7 +87,7 @@ header > button:active {
   color: rgb(70, 70, 70);
 }
 
-.user-info > img {
+.user-info img {
   margin-right: 10px;
   height: 25px;
   padding: 3px;
