@@ -5,6 +5,6 @@ const fetchURL = async (endpoint) => {
   return result.json();
 };
 
-export const getProductById = (id) => fetchURL(`/items/${id}`);
+const searchProductByText = (text) => fetchURL(`/sites/MLB/search?q=${text}`);
 
-export const searchProductByText = (text) => fetchURL(`/sites/MLB/search?q=${text}`);
+export default searchProductByText;

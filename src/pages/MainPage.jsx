@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
+import LoadingPage from './LoadingPage';
 import ProductCard from '../components/ProductCard';
 
 import '../css/MainPage.css';
-import LoadingPage from './LoadingPage';
 
 export default class MainPage extends Component {
   render() {

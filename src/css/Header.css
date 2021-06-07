@@ -65,3 +65,8 @@ header > button:active {
 .header-img.logo {
   margin-right: 15px;
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: .5;
+}

@@ -3,22 +3,19 @@ import { Link } from 'react-router-dom';
 import ProductAttributes from '../components/ProductAttributes';
 
 import '../css/DetailsPage.css';
-import { getProductById } from '../service/API';
-import LoadingPage from './LoadingPage';
 
 export default class DetailsPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      product: {},
-      loading: true,
-    };
-  }
+    // destructuring da lista de produtos e do id passado pela URL
+    const { products, match: { params: { id } } } = this.props;
 
-  async componentDidMount() {
-    const { match: { params: { id } } } = this.props;
-    const product = await getProductById(id);
-    this.setState({ product, loading: false });
+    // filtragem do produto pelo id
+    const product = products.find((prod) => prod.id === id);
+
+    this.state = {
+      product,
+    };
   }
 
   render() {
@@ -26,19 +23,14 @@ export default class DetailsPage extends Component {
       product: {
         warranty, attributes, thumbnail, price, title,
       },
-      loading,
     } = this.state;
-
-    if (loading) {
-      return <LoadingPage />;
-    }
 
     return (
       <div className="product-details-card">
         <div className="product-details">
           <img src={thumbnail.replace('I.jpg', 'F.jpg')} alt="product" />
           <div className="product-details-info">
-            <Link to="/">Voltar para tela inicial</Link>
+            <Link to="/products">Voltar para tela inicial</Link>
             <h2>{title}</h2>
             <span>{warranty}</span>
             <span>R${price.toLocaleString()}</span>

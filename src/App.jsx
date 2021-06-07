@@ -7,7 +7,7 @@ import DetailsPage from './pages/DetailsPage';
 import Login from './pages/LoginPage';
 
 import './css/App.css';
-import { searchProductByText } from './service/API';
+import searchProductByText from './service/API';
 
 export default class App extends Component {
   constructor(props) {
@@ -44,7 +44,7 @@ export default class App extends Component {
         <Switch>
           <Route exact path="/" render={() => <Login getUsername={this.getUsername} />} />
           <Route exact path="/products" render={() => <MainPage products={products} loading={loading} />} />
-          <Route path="/details/:id" render={(props) => <DetailsPage {...props} />} />
+          <Route path="/details/:id" render={(props) => <DetailsPage {...props} products={products} />} />
         </Switch>
       </div>
     );

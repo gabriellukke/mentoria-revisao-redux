@@ -3,7 +3,6 @@ import mercadoTrybe from '../images/mercadoTrybe.png';
 import trybeLogo from '../images/trybeLogo.png';
 import searchIcon from '../images/searchIcon.png';
 import '../css/Header.css';
-import { searchProductByText } from '../service/API';
 
 class Header extends Component {
   constructor(props) {
@@ -22,15 +21,21 @@ class Header extends Component {
   }
 
   render() {
-    const { state: { searchText }, props: { onClick } } = this;
+    const { state: { searchText }, props: { onClick, username } } = this;
     return (
       <header>
         <div>
           <img src={trybeLogo} alt="Trybe logo" className="header-img logo" />
           <img src={mercadoTrybe} alt="mercado trybe title" className="header-img title" />
         </div>
-        <input type="text" placeholder="Buscar produtos, marcas e muito mais…" value={searchText} onChange={this.onType} />
-        <button type="button" onClick={() => onClick(searchText)}>
+        <input
+          type="text"
+          placeholder="Buscar produtos, marcas e muito mais…"
+          value={searchText}
+          onChange={this.onType}
+          className={username ? '' : 'disabled'}
+        />
+        <button type="button" onClick={() => onClick(searchText)} className={username ? '' : 'disabled'}>
           <img src={searchIcon} alt="search icon" />
         </button>
       </header>
