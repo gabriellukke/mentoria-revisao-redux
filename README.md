@@ -5,30 +5,34 @@ E a resolução vai ser feita na branch **frontendstore-with-redux-turma-X**.
 
 ---
 
-## Código pronto
+## Código base
 
-Nosso objetivo é refatorar a aplicação utilizando o Redux.
-
-O código já está pronto, e nele temos uma aplicação semelhante ao projeto **Front End Online Store**, contando com:
+O código já está pronto, e nele temos uma aplicação ([fluxos da aplicação](https://excalidraw.com/#json=5659373049217024,JoJgQ0R9KYz4IN8-NKZgCQ)) semelhante ao projeto **Front End Online Store**, contando com:
 
 - Página de login
-  - Uma página simples, com um formulário onde o usuário insere o nome e realiza o login.
+  - uma página simples, com um formulário onde o usuário insere o nome e realiza o login.
   - ao realizar o login o usuário é redirecionado a página de listagem
 
 - Página de listagem de produtos
-  - exibe uma lista de computadores, utilizando o endpoint <br/> `https://api.mercadolibre.com/sites/MLB/search?q=computador` do mercado livre
-  - é possível adicionar um produto ao carrinho nessa página
+  - exibe uma lista de computadores, utilizando o endpoint <br/> `https://api.mercadolibre.com/sites/MLB/search?q=$QUERY` do mercado livre
+  - nessa página é possível adicionar um produto ao carrinho
 
 - Página de detalhes do produto
-  - exibe toda informação do produto
-  - é possível adicionar um produto ao carrinho nessa página
+  - exibe mais informações do produto
+  - nessa página é possível adicionar um produto ao carrinho
 
 - Página do carrinho
   - exibe todos produtos adicionado no carrinho
-  - é possível remover um produto do carrinho nessa página
+  - nessa página é possível remover um produto do carrinho
 
 ---
-# Checklist do react-redux
+
+## Objetivo
+
+O objetivo é refatorar a aplicação utilizando o Redux, para isso será necessário instalar as dependências, `redux`, `react-redux` e `redux-thunk`. Caso queira, utilize essa [sugestão](##-checklist-do-react-redux-(sugestão)) de checklist, para guiar o inicio do desenvolvimento do Redux
+
+---
+## Checklist do react redux (sugestão)
 
 *Antes de começar*
 - [ ] pensar como será o *formato* do seu estado global
@@ -68,10 +72,3 @@ O código já está pronto, e nele temos uma aplicação semelhante ao projeto *
 - [ ] criar a função mapDispatchToProps
 - [ ] fazer o connect
 
----
-
-## Requisitos
-
-1. Inicie a estruturação do Redux.
-  - crie as pastas reducers, actions e store
-  - 
