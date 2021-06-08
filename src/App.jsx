@@ -16,16 +16,14 @@ export default class App extends Component {
     super(props);
     this.onClick = this.onClick.bind(this);
     this.setUsername = this.setUsername.bind(this);
+    this.addProductToCart = this.addProductToCart.bind(this);
+    this.removeProductOfCart = this.removeProductOfCart.bind(this);
 
     this.state = {
       products: [],
       cartProducts: [],
       username: '',
     };
-  }
-
-  componentDidMount() {
-    console.log('renderizou App');
   }
 
   async onClick(searchText) {
@@ -38,6 +36,20 @@ export default class App extends Component {
     this.setState({ username });
   }
 
+  addProductToCart(id) {
+    const { products } = this.state;
+    const product = products.find((prod) => prod.id === id);
+    this.setState((prevState) => ({
+      cartProducts: [...prevState.cartProducts, product],
+    }));
+  }
+
+  removeProductOfCart(id) {
+    const { cartProducts: products } = this.state;
+    const cartProducts = products.filter((prod) => prod.id !== id);
+    this.setState({ cartProducts });
+  }
+
   render() {
     const {
       products, cartProducts, loading, username,
@@ -47,9 +59,9 @@ export default class App extends Component {
         <Header onClick={this.onClick} username={username} />
         <Switch>
           <Route exact path="/" render={() => <Login setUsername={this.setUsername} />} />
-          <Route exact path="/products" render={() => <MainPage products={products} loading={loading} />} />
-          <Route exact path="/cart" render={() => <CartPage products={cartProducts} />} />
-          <Route path="/details/:id" render={(props) => <DetailsPage {...props} products={products} />} />
+          <Route exact path="/products" render={() => <MainPage products={products} loading={loading} addToCart={this.addProductToCart} />} />
+          <Route exact path="/cart" render={() => <CartPage products={cartProducts} onClick={this.removeProductOfCart} />} />
+          <Route path="/details/:id" render={(props) => <DetailsPage {...props} products={products} addToCart={this.addProductToCart} />} />
         </Switch>
       </div>
     );

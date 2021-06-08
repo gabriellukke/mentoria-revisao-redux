@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 
 import ProductCard from '../components/ProductCard';
 
-import '../css/MainPage.css';
-
-export default class MainPage extends Component {
+export default class CartPage extends Component {
   render() {
-    const { products } = this.props;
+    const { products, onClick } = this.props;
 
     return (
       <div className="product-list">
-        {products.map((product) => <ProductCard product={product} key={product.id} />)}
+        {products.map((product) => (
+          <ProductCard
+            product={product}
+            key={product.id}
+            onClick={onClick}
+            isCart
+          />
+        ))}
       </div>
     );
   }

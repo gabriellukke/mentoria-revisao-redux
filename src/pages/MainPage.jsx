@@ -7,7 +7,7 @@ import '../css/MainPage.css';
 
 export default class MainPage extends Component {
   render() {
-    const { products, loading } = this.props;
+    const { products, loading, addToCart } = this.props;
 
     if (loading) {
       return <LoadingPage />;
@@ -15,7 +15,13 @@ export default class MainPage extends Component {
 
     return (
       <div className="product-list">
-        {products.map((product) => <ProductCard product={product} key={product.id} />)}
+        {products.map((product) => (
+          <ProductCard
+            product={product}
+            key={product.id}
+            onClick={addToCart}
+          />
+        ))}
       </div>
     );
   }

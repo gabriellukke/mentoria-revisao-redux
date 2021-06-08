@@ -25,6 +25,8 @@ export default class DetailsPage extends Component {
       },
     } = this.state;
 
+    const { addToCart, match: { params: { id } } } = this.props;
+
     return (
       <div className="product-details-card">
         <div className="product-details">
@@ -37,6 +39,9 @@ export default class DetailsPage extends Component {
           </div>
         </div>
         <ProductAttributes attributes={attributes} />
+        <button type="button" onClick={() => addToCart(id)}>
+          Adicionar Item
+        </button>
       </div>
     );
   }
