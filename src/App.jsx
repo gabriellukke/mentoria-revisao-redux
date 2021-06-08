@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header';
 import MainPage from './pages/MainPage';
+import CartPage from './pages/CartPage';
 import DetailsPage from './pages/DetailsPage';
 import Login from './pages/LoginPage';
 
@@ -17,6 +18,7 @@ export default class App extends Component {
 
     this.state = {
       products: [],
+      cartProducts: [],
       username: '',
     };
   }
@@ -37,13 +39,16 @@ export default class App extends Component {
   }
 
   render() {
-    const { products, loading, username } = this.state;
+    const {
+      products, cartProducts, loading, username,
+    } = this.state;
     return (
       <div className="App">
         <Header onClick={this.onClick} username={username} />
         <Switch>
           <Route exact path="/" render={() => <Login getUsername={this.getUsername} />} />
           <Route exact path="/products" render={() => <MainPage products={products} loading={loading} />} />
+          <Route exact path="/cart" render={() => <CartPage products={cartProducts} />} />
           <Route path="/details/:id" render={(props) => <DetailsPage {...props} products={products} />} />
         </Switch>
       </div>
