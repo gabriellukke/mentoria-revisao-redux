@@ -12,8 +12,8 @@ export default class ProductCard extends Component {
       },
     } = this.props;
     return (
-      <>
-        <Link to={`/details/${id}`} className="product-card">
+      <div className="product-card">
+        <Link to={`/details/${id}`}>
           <div className="product-img">
             <img src={thumbnail.replace('I.jpg', 'F.jpg')} alt="product" />
           </div>
@@ -22,10 +22,14 @@ export default class ProductCard extends Component {
             <span>R${price.toLocaleString()}</span>
           </div>
         </Link>
-        <button type="button" onClick={() => onClick(id)}>
+        <button
+          type="button"
+          onClick={() => onClick(id)}
+          className={isCart ? 'remove' : 'add'}
+        >
           { isCart ? 'Remover Item' : 'Adicionar Item' }
         </button>
-      </>
+      </div>
     );
   }
 }

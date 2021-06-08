@@ -25,3 +25,19 @@
   display: flex;
   flex-direction: column;
 }
+
+.product-details-card > button {
+  border: 2px solid var(--green-trybe);
+  color: #368b65;
+  background-color: rgb(234, 255, 236);
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.product-details-card > button:hover {
+  background-color: rgba(0, 0, 0, 0.185);
+}
+
+.product-details-card > button:active {
+  background-color: rgba(0, 0, 0, 0.295);
+}

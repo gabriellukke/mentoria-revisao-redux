@@ -29,10 +29,12 @@ class Header extends Component {
     const { state: { searchText }, props: { onClick, username } } = this;
     return (
       <header>
-        <Link to="/products">
-          <img src={trybeLogo} alt="Trybe logo" className="header-img logo" />
-          <img src={mercadoTrybe} alt="mercado trybe title" className="header-img title" />
-        </Link>
+        <div>
+          <Link to={username ? '/products' : '/'}>
+            <img src={trybeLogo} alt="Trybe logo" className="header-img logo" />
+            <img src={mercadoTrybe} alt="mercado trybe title" className="header-img title" />
+          </Link>
+        </div>
         <input
           type="text"
           placeholder="Buscar produtos, marcas e muito mais…"
