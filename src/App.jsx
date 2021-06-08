@@ -7,14 +7,15 @@ import CartPage from './pages/CartPage';
 import DetailsPage from './pages/DetailsPage';
 import Login from './pages/LoginPage';
 
-import './css/App.css';
 import searchProductByText from './service/API';
+
+import './css/App.css';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
-    this.getUsername = this.getUsername.bind(this);
+    this.setUsername = this.setUsername.bind(this);
 
     this.state = {
       products: [],
@@ -33,8 +34,7 @@ export default class App extends Component {
     this.setState({ products: results, loading: false });
   }
 
-  getUsername(username) {
-    console.log(username);
+  setUsername(username) {
     this.setState({ username });
   }
 
@@ -46,7 +46,7 @@ export default class App extends Component {
       <div className="App">
         <Header onClick={this.onClick} username={username} />
         <Switch>
-          <Route exact path="/" render={() => <Login getUsername={this.getUsername} />} />
+          <Route exact path="/" render={() => <Login setUsername={this.setUsername} />} />
           <Route exact path="/products" render={() => <MainPage products={products} loading={loading} />} />
           <Route exact path="/cart" render={() => <CartPage products={cartProducts} />} />
           <Route path="/details/:id" render={(props) => <DetailsPage {...props} products={products} />} />
