@@ -29,7 +29,7 @@ O código já está pronto, e nele temos uma aplicação ([fluxos da aplicação
 
 ## Objetivo
 
-O objetivo é refatorar a aplicação utilizando o Redux, para isso será necessário instalar as dependências, `redux`, `react-redux` e `redux-thunk`. Caso queira, utilize essa [sugestão](##-checklist-do-react-redux-(sugestão)) de checklist, para guiar o inicio do desenvolvimento do Redux
+O objetivo é refatorar a aplicação utilizando o Redux, para isso será necessário instalar as dependências, `redux`, `react-redux`, `redux-thunk` e `redux-devtools-extension`. Caso queira, utilize essa [sugestão](##-checklist-do-react-redux-(sugestão)) de checklist, para guiar o inicio do desenvolvimento do Redux
 
 ---
 ## Checklist do react redux (sugestão)
