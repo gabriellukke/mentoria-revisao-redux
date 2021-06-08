@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import '../css/LoginPage.css';
+import setNameAction from '../redux/actions/userAction';
 
 class Login extends React.Component {
   constructor(props) {
@@ -53,4 +55,8 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  setUsername: (username) => dispatch(setNameAction(username)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);

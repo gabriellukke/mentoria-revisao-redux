@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import LoadingPage from './LoadingPage';
 import ProductCard from '../components/ProductCard';
+import { addToCart } from '../redux/actions/productAction';
 
 import '../css/MainPage.css';
 
-export default class MainPage extends Component {
+class MainPage extends Component {
   render() {
-    const { products, loading, addToCart } = this.props;
+    const { products, loading, onClick } = this.props;
 
     if (loading) {
       return <LoadingPage />;
@@ -19,10 +21,20 @@ export default class MainPage extends Component {
           <ProductCard
             product={product}
             key={product.id}
-            onClick={addToCart}
+            onClick={onClick}
           />
         ))}
       </div>
     );
   }
 }
+
+const mapStateToProps = ({ productReducer: { products, loading } }) => ({
+  products, loading,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onClick: (product) => dispatch(addToCart(product)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

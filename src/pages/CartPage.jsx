@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import ProductCard from '../components/ProductCard';
+import { removeFromCart } from '../redux/actions/productAction';
 
-export default class CartPage extends Component {
+class CartPage extends Component {
   render() {
-    const { products, onClick } = this.props;
+    const { cartProducts, onClick } = this.props;
 
     return (
       <div className="product-list">
-        {products.map((product) => (
+        {cartProducts.map((product) => (
           <ProductCard
             product={product}
             key={product.id}
@@ -20,3 +22,13 @@ export default class CartPage extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ productReducer: { cartProducts } }) => ({
+  cartProducts,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onClick: (id) => dispatch(removeFromCart(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartPage);

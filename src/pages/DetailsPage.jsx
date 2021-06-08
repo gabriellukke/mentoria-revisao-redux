@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import ProductAttributes from '../components/ProductAttributes';
+import { addToCart } from '../redux/actions/productAction';
 
 import '../css/DetailsPage.css';
 
-export default class DetailsPage extends Component {
+class DetailsPage extends Component {
   constructor(props) {
     super(props);
     // destructuring da lista de produtos e do id passado pela URL
@@ -18,6 +21,12 @@ export default class DetailsPage extends Component {
     };
   }
 
+  onAddToCart(id) {
+    const { products, onClick } = this.props;
+    const product = products.find((prod) => prod.id === id);
+    onClick(product);
+  }
+
   render() {
     const {
       product: {
@@ -25,7 +34,7 @@ export default class DetailsPage extends Component {
       },
     } = this.state;
 
-    const { addToCart, match: { params: { id } } } = this.props;
+    const { match: { params: { id } }, onClick } = this.props;
 
     return (
       <div className="product-details-card">
@@ -39,10 +48,20 @@ export default class DetailsPage extends Component {
           </div>
         </div>
         <ProductAttributes attributes={attributes} />
-        <button type="button" onClick={() => addToCart(id)}>
+        <button type="button" onClick={() => onClick(id)}>
           Adicionar Item
         </button>
       </div>
     );
   }
 }
+
+const mapStateToProps = ({ productReducer: { products } }) => ({
+  products,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onClick: (id) => dispatch(addToCart(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailsPage);

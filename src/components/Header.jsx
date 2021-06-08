@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import mercadoTrybe from '../images/mercadoTrybe.png';
 import trybeLogo from '../images/trybeLogo.png';
 import searchIcon from '../images/searchIcon.png';
 import userIcon from '../images/userIcon.png';
 import cartIcon from '../images/cartIcon.png';
+import { getResult } from '../redux/actions/productAction';
 
 import '../css/Header.css';
 
@@ -67,4 +69,12 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapDispatchToProps = (dispatch) => ({
+  onClick: (text) => dispatch(getResult(text)),
+});
+
+const mapStateToProps = ({ userReducer }) => ({
+  username: userReducer,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
