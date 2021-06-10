@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import LoadingPage from './LoadingPage';
 import ProductCard from '../components/ProductCard';
 
 import '../css/MainPage.css';
 
-export default class MainPage extends Component {
+class MainPage extends Component {
   render() {
     const { products, loading, addToCart } = this.props;
 
@@ -26,3 +27,10 @@ export default class MainPage extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  products: state.productReducer.products,
+  loading: state.productReducer.loading,
+});
+
+export default connect(mapStateToProps, null)(MainPage);

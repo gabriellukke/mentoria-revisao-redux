@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { setUsername } from '../actions';
 
 import '../css/LoginPage.css';
 
@@ -21,7 +24,7 @@ class Login extends React.Component {
 
   render() {
     const { username } = this.state;
-    const { setUsername } = this.props;
+    const { setUsernameProp } = this.props;
     return (
       <form className="login-form">
         <label htmlFor="username" className="login-label">
@@ -42,7 +45,7 @@ class Login extends React.Component {
             if (!username) {
               e.preventDefault();
             }
-            setUsername(username);
+            setUsernameProp(username);
           }}
           className="login-btn"
         >
@@ -53,4 +56,8 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  setUsernameProp: (payload) => dispatch(setUsername(payload)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);

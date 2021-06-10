@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { getProductsThunk } from '../actions/index';
 
 import mercadoTrybe from '../images/mercadoTrybe.png';
 import trybeLogo from '../images/trybeLogo.png';
@@ -26,14 +29,12 @@ class Header extends Component {
   }
 
   render() {
-    const { state: { searchText }, props: { onClick, username } } = this;
+    const { state: { searchText }, props: { getProducts, username } } = this;
     return (
       <header>
         <div>
-          <Link to={username ? '/products' : '/'}>
-            <img src={trybeLogo} alt="Trybe logo" className="header-img logo" />
-            <img src={mercadoTrybe} alt="mercado trybe title" className="header-img title" />
-          </Link>
+          <img src={trybeLogo} alt="Trybe logo" className="header-img logo" />
+          <img src={mercadoTrybe} alt="mercado trybe title" className="header-img title" />
         </div>
         <input
           type="text"
@@ -42,7 +43,7 @@ class Header extends Component {
           onChange={this.onType}
           className={username ? '' : 'disabled'}
         />
-        <button type="button" onClick={() => onClick(searchText)} className={username ? '' : 'disabled'}>
+        <button type="button" onClick={() => getProducts(searchText)} className={username ? '' : 'disabled'}>
           <img src={searchIcon} alt="search icon" />
         </button>
         <div className="user-info">
@@ -67,4 +68,12 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  username: state.userReducer.username,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getProducts: (payload) => dispatch(getProductsThunk(payload)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
