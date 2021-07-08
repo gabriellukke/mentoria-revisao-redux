@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+import { getProductsThunk } from '../actions';
 import mercadoTrybe from '../images/mercadoTrybe.png';
 import trybeLogo from '../images/trybeLogo.png';
 import searchIcon from '../images/searchIcon.png';
@@ -26,7 +28,7 @@ class Header extends Component {
   }
 
   render() {
-    const { state: { searchText }, props: { onClick, username } } = this;
+    const { state: { searchText }, props: { getProducts, username } } = this;
     return (
       <header>
         <div>
@@ -42,7 +44,7 @@ class Header extends Component {
           onChange={this.onType}
           className={username ? '' : 'disabled'}
         />
-        <button type="button" onClick={() => onClick(searchText)} className={username ? '' : 'disabled'}>
+        <button type="button" onClick={() => getProducts(searchText)} className={username ? '' : 'disabled'}>
           <img src={searchIcon} alt="search icon" />
         </button>
         <div className="user-info">
@@ -67,4 +69,12 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  username: state.userReducer.username,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getProducts: () => dispatch(getProductsThunk()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

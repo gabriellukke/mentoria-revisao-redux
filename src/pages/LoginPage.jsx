@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setUsername } from '../actions';
 
 import '../css/LoginPage.css';
 
@@ -21,7 +23,7 @@ class Login extends React.Component {
 
   render() {
     const { username } = this.state;
-    const { setUsername } = this.props;
+    const { setUsernameAction } = this.props;
     return (
       <form className="login-form">
         <label htmlFor="username" className="login-label">
@@ -42,7 +44,7 @@ class Login extends React.Component {
             if (!username) {
               e.preventDefault();
             }
-            setUsername(username);
+            setUsernameAction(username);
           }}
           className="login-btn"
         >
@@ -53,4 +55,8 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  setUsernameAction: (payload) => dispatch(setUsername(payload)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
