@@ -50,7 +50,7 @@ class Header extends Component {
           username
             ? (
               <>
-                <Link to="cart"><img src={cartIcon} alt="user icon" /></Link>
+                <Link to="/cart"><img src={cartIcon} alt="user icon" /></Link>
                 {username}
               </>
             )
