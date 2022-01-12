@@ -1,5 +1,5 @@
-# Revisão-redux-bloco-16
-Repositório para o Plantão de Revisão do Bloco de Redux, o código original sem o uso do Redux está na branch **main**.
+# Revisão-react-redux
+Repositório para a Mentoria Técnica de Revisão do Bloco de Redux, o código original sem o uso do Redux está na branch **main**.
 
 E a resolução vai ser feita na branch **frontendstore-with-redux-turma-X**.
 
